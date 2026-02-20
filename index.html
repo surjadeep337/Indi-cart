@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>INDICART – India Ka Bazaar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <span>🎉 UP TO 70% OFF – BIGGEST SALE OF THE YEAR!</span>
+    <span>FREE DELIVERY on orders above ₹499</span>
+    <span>📞 1800-INDICART | 24/7 Support</span>
+  </div>
+
+  <!-- HEADER / NAVBAR -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="#" class="logo">
+        <span class="logo-indi">INDI</span><span class="logo-cart">CART</span>
+        <span class="logo-tag">भारत का बाज़ार</span>
+      </a>
+
+      <div class="search-bar">
+        <select class="search-cat" id="searchCat">
+          <option value="all">All</option>
+          <option value="electronics">Electronics</option>
+          <option value="food">Food</option>
+          <option value="makeover">Make-Over</option>
+          <option value="men">Men's Dress</option>
+          <option value="women">Women's Dress</option>
+          <option value="medicine">Medicine</option>
+        </select>
+        <input type="text" id="searchInput" placeholder="Search for products, brands and more…"/>
+        <button class="search-btn" id="searchBtn">🔍</button>
+      </div>
+
+      <nav class="nav-icons">
+        <a href="#" class="nav-link" id="accountBtn">👤 Account</a>
+        <a href="#" class="nav-link" id="wishlistBtn">❤️ Wishlist <span class="badge" id="wishCount">0</span></a>
+        <a href="#" class="nav-link" id="cartBtn">🛒 Cart <span class="badge" id="cartCount">0</span></a>
+      </nav>
+    </div>
+
+    <!-- CATEGORY NAV -->
+    <nav class="cat-nav">
+      <a href="#" class="cat-link active" data-cat="all">🏠 Home</a>
+      <a href="#" class="cat-link" data-cat="electronics">📱 Electronics</a>
+      <a href="#" class="cat-link" data-cat="food">🍛 Food</a>
+      <a href="#" class="cat-link" data-cat="makeover">💄 Make-Over</a>
+      <a href="#" class="cat-link" data-cat="men">👔 Men</a>
+      <a href="#" class="cat-link" data-cat="women">👗 Women</a>
+      <a href="#" class="cat-link" data-cat="medicine">💊 Medicine</a>
+      <a href="#" class="cat-link sale-link">🔥 SALE</a>
+    </nav>
+  </header>
+
+  <!-- HERO BANNER -->
+  <section class="hero" id="hero">
+    <div class="hero-slides" id="heroSlides">
+      <div class="hero-slide active" style="--bg:#ff6b35;">
+        <div class="hero-text">
+          <p class="hero-sub">BIGGEST SALE EVER</p>
+          <h1>Electronics<br><span>Up to 60% OFF</span></h1>
+          <p>Smartphones, Laptops, TVs & More</p>
+          <a href="#" class="btn-hero" data-cat="electronics">Shop Now →</a>
+        </div>
+        <div class="hero-img">📱💻📺</div>
+      </div>
+      <div class="hero-slide" style="--bg:#2d9e6b;">
+        <div class="hero-text">
+          <p class="hero-sub">FRESH & ORGANIC</p>
+          <h1>Groceries &<br><span>Food Items</span></h1>
+          <p>Daily essentials at lowest prices</p>
+          <a href="#" class="btn-hero" data-cat="food">Shop Now →</a>
+        </div>
+        <div class="hero-img">🥗🍎🛒</div>
+      </div>
+      <div class="hero-slide" style="--bg:#c2185b;">
+        <div class="hero-text">
+          <p class="hero-sub">BEAUTY BONANZA</p>
+          <h1>Make-Over &<br><span>Beauty Sale</span></h1>
+          <p>Skincare, Cosmetics & More</p>
+          <a href="#" class="btn-hero" data-cat="makeover">Shop Now →</a>
+        </div>
+        <div class="hero-img">💄💋✨</div>
+      </div>
+    </div>
+    <div class="hero-dots" id="heroDots">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+  </section>
+
+  <!-- SALE STRIP -->
+  <div class="sale-strip">
+    <div class="sale-strip-inner">
+      <span>⚡ FLASH SALE</span>
+      <span>🔥 Today's Deals</span>
+      <span>🏷️ Up to 70% OFF</span>
+      <span>🚚 Free Delivery ₹499+</span>
+      <span>✅ Trusted by 10M+ Indians</span>
+      <span>⚡ FLASH SALE</span>
+      <span>🔥 Today's Deals</span>
+      <span>🏷️ Up to 70% OFF</span>
+      <span>🚚 Free Delivery ₹499+</span>
+      <span>✅ Trusted by 10M+ Indians</span>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main class="main" id="main">
+
+    <!-- CATEGORY CARDS -->
+    <section class="section" id="categoriesSection">
+      <h2 class="section-title">Shop by Category</h2>
+      <div class="category-grid">
+        <a href="#" class="cat-card" data-cat="electronics">
+          <div class="cat-icon">📱</div>
+          <span>Electronics</span>
+          <small>1200+ Products</small>
+        </a>
+        <a href="#" class="cat-card" data-cat="food">
+          <div class="cat-icon">🍛</div>
+          <span>Food & Grocery</span>
+          <small>2500+ Products</small>
+        </a>
+        <a href="#" class="cat-card" data-cat="makeover">
+          <div class="cat-icon">💄</div>
+          <span>Make-Over</span>
+          <small>800+ Products</small>
+        </a>
+        <a href="#" class="cat-card" data-cat="men">
+          <div class="cat-icon">👔</div>
+          <span>Men's Fashion</span>
+          <small>3000+ Products</small>
+        </a>
+        <a href="#" class="cat-card" data-cat="women">
+          <div class="cat-icon">👗</div>
+          <span>Women's Fashion</span>
+          <small>4500+ Products</small>
+        </a>
+        <a href="#" class="cat-card" data-cat="medicine">
+          <div class="cat-icon">💊</div>
+          <span>Medicine</span>
+          <small>600+ Products</small>
+        </a>
+      </div>
+    </section>
+
+    <!-- PRODUCTS SECTION -->
+    <section class="section" id="productsSection">
+      <div class="section-header">
+        <h2 class="section-title" id="productsTitle">🔥 Today's Best Deals</h2>
+        <div class="sort-bar">
+          <label>Sort:</label>
+          <select id="sortSelect">
+            <option value="default">Featured</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="discount">Best Discount</option>
+            <option value="rating">Top Rated</option>
+          </select>
+        </div>
+      </div>
+      <div class="products-grid" id="productsGrid">
+        <!-- JS will inject product cards here -->
+      </div>
+      <div class="no-results hidden" id="noResults">
+        <p>😕 No products found. Try a different search!</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FEATURES STRIP -->
+  <div class="features-strip">
+    <div class="feature-item">🚚<span>Free Delivery<br><small>Orders ₹499+</small></span></div>
+    <div class="feature-item">🔄<span>Easy Returns<br><small>7-day policy</small></span></div>
+    <div class="feature-item">🔒<span>Secure Payment<br><small>100% safe</small></span></div>
+    <div class="feature-item">💯<span>Original Products<br><small>Quality assured</small></span></div>
+    <div class="feature-item">🤝<span>24/7 Support<br><small>Always here</small></span></div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <h3 class="logo"><span class="logo-indi">INDI</span><span class="logo-cart">CART</span></h3>
+        <p>India's most affordable online marketplace. Shop smart, save big!</p>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="#">Electronics</a></li>
+          <li><a href="#">Food & Grocery</a></li>
+          <li><a href="#">Make-Over</a></li>
+          <li><a href="#">Men's Fashion</a></li>
+          <li><a href="#">Women's Fashion</a></li>
+          <li><a href="#">Medicine</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#">Track Order</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">Customer Support</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Sell on INDICART</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 INDICART. Made with ❤️ in India. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- CART SIDEBAR -->
+  <div class="cart-overlay hidden" id="cartOverlay"></div>
+  <div class="cart-sidebar hidden" id="cartSidebar">
+    <div class="cart-header">
+      <h3>🛒 My Cart</h3>
+      <button id="closeCart">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <p class="cart-empty">Your cart is empty!</p>
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display:none">
+      <div class="cart-total">Total: <strong id="cartTotal">₹0</strong></div>
+      <button class="btn-checkout">Proceed to Checkout →</button>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast hidden" id="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
