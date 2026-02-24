@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Account - INDICART</title>
+<link rel="stylesheet" href="style1.css">
+</head>
+
+<body>
+
+<h1 class="store-title">INDICART</h1>
+
+<div class="container">
+
+    <div class="title">YOUR ACCOUNT</div>
+
+    <div class="tabs">
+        <button id="loginTab" class="active" onclick="showLogin()">Login</button>
+        <button id="registerTab" onclick="showRegister()">Register</button>
+    </div>
+
+    <form id="loginForm">
+        <input type="email" required placeholder="Enter Email">
+        <input type="password" required placeholder="Enter Password">
+        <button type="button" class="submit-btn" onclick="redirectHome()">Login</button>
+    </form>
+
+    <form id="registerForm" class="hidden">
+        <input type="text" required placeholder="Full Name">
+        <input type="email" required placeholder="Email">
+        <input type="password" required placeholder="Password">
+        <input type="password" required placeholder="Confirm Password">
+        <button type="button" class="submit-btn" onclick="redirectHome()">Register</button>
+    </form>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
