@@ -1,134 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<title>Sell on INDICART</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Sell on INDICART</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-body{
-  margin:0;
-  font-family: Arial, Helvetica, sans-serif;
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  background: linear-gradient(160deg,#163359,#22416c,#1c3d68);
-  overflow-x:hidden;
-  position:relative;
-}
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-/* Orange Glow Balls */
-body::before{
-  content:"";
-  position:fixed;
-  width:500px;
-  height:500px;
-  background: radial-gradient(circle, rgba(255, 112, 56, 0.79), transparent 70%);
-  top:-150px;
-  right:-150px;
-  z-index:0;
-}
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: #f1f3f6;
+        }
 
-body::after{
-  content:"";
-  position:fixed;
-  width:450px;
-  height:450px;
-  background: radial-gradient(circle, rgba(255, 112, 55, 0.763), transparent 70%);
-  bottom:-150px;
-  left:-150px;
-  z-index:0;
-}
+        .navbar {
+            position: relative;
+            padding: 15px 60px;
+            background: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-/* Logo */
-.logo{
-  text-align:center;
-  font-size:42px;
-  font-weight:900;
-  letter-spacing:3px;
-  margin:40px 0 20px 0;
-  background: linear-gradient(90deg,#ffffff,#ff6a2f);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  text-shadow:0 0 25px rgba(255,106,47,0.4);
-  position:relative;
-  z-index:2;
-}
+        .navbar::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #ff6a2f, transparent);
+            background-size: 200% 100%;
+            animation: lineMove 15s ease-in-out infinite;
+        }
 
-/* Glass Card */
-.container{
-  width:90%;
-  max-width:900px;
-  margin:0 auto 60px auto;
-  background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(16px);
-  padding:45px;
-  border-radius:22px;
-  border:1px solid rgba(255,255,255,0.18);
-  box-shadow:0 25px 60px rgba(0,0,0,0.45);
-  color:white;
-  flex:1;
-  position:relative;
-  z-index:2;
-}
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
 
-.container h2{
-  color:#ff6a2f;
-  margin-top:28px;
-}
+        .logo span {
+            color: #ff6a2f;
+        }
 
-.container ul,
-.container ol{
-  margin-left:22px;
-  margin-top:10px;
-  line-height:1.8;
-}
+        .nav-links a {
+            margin-left: 25px;
+            text-decoration: none;
+            color: #333;
+        }
 
-/* Footer */
-footer{
-  width:100%;
-  background:#0f1f35;
-  text-align:center;
-  padding:20px 0;
-  color:#bbb;
-  font-size:14px;
-  position:relative;
-  z-index:2;
-}
-</style>
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #ff6a2f;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 70px 20px 40px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #555;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #ff6a2f, #ff8c42);
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(255, 106, 47, 0.4);
+        }
+
+        .section {
+            padding: 40px 60px;
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .glow-box {
+            position: relative;
+            border-radius: 12px;
+            padding: 2px;
+            background: linear-gradient(90deg, transparent, #ff6a2f, transparent);
+            background-size: 200% 100%;
+            animation: lineMove 10s ease-in-out infinite;
+            flex: 1 1 220px;
+            max-width: 250px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            height: 100%;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+        }
+
+        .card h3 {
+            color: #ff6a2f;
+            margin-bottom: 10px;
+        }
+
+        .steps {
+            padding: 40px 60px;
+        }
+
+        .step-box {
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .footer {
+            position: relative;
+            padding: 20px;
+            text-align: center;
+            background: white;
+            margin-top: auto;
+        }
+
+        .footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #ff6a2f, transparent);
+            background-size: 200% 100%;
+            animation: lineMove 15s ease-in-out infinite;
+        }
+
+        .footer span {
+            color: #ff6a2f;
+            font-weight: bold;
+        }
+
+        @keyframes lineMove {
+            0% {
+                background-position: 200% 0;
+            }
+
+            100% {
+                background-position: -200% 0;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="logo">INDICART</div>
+    <div class="navbar">
+        <div class="logo">INDI<span>CART</span></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="sell.html" class="active">Sell</a>
+        </div>
+    </div>
 
-<div class="container">
-  <h1>Sell on INDICART</h1>
-  <p>
-    Grow your business with India's fastest growing marketplace.
-    Reach millions of customers nationwide.
-  </p>
+    <section class="hero">
+        <h1>Sell on INDICART</h1>
+        <p>Reach millions of customers and grow your business across India.</p>
+        <button>Start Selling</button>
+    </section>
 
-  <h2>Why Sell With Us?</h2>
-  <ul>
-    <li>10M+ active customers</li>
-    <li>Low commission rates</li>
-    <li>Fast & secure payments</li>
-    <li>Dedicated seller support</li>
-  </ul>
+    <section class="section">
 
-  <h2>How It Works</h2>
-  <ol>
-    <li>Create your seller account</li>
-    <li>List your products</li>
-    <li>Receive orders</li>
-    <li>Get paid directly to your bank</li>
-  </ol>
-</div>
+        <div class="glow-box">
+            <div class="card">
+                <h3>10M+ Customers</h3>
+                <p>Access a huge customer base instantly.</p>
+            </div>
+        </div>
 
-<footer>
-  © 2026 INDICART. Made with ❤️ in India.
-</footer>
+        <div class="glow-box">
+            <div class="card">
+                <h3>Low Commission</h3>
+                <p>Keep more profit with better pricing.</p>
+            </div>
+        </div>
+
+        <div class="glow-box">
+            <div class="card">
+                <h3>Secure Payments</h3>
+                <p>Fast & safe transactions directly.</p>
+            </div>
+        </div>
+
+        <div class="glow-box">
+            <div class="card">
+                <h3>Seller Support</h3>
+                <p>24/7 help for your business growth.</p>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="steps">
+        <h2 style="margin-bottom:20px;">How It Works</h2>
+
+        <div class="step-box">1. Create your seller account</div>
+        <div class="step-box">2. List your products</div>
+        <div class="step-box">3. Receive orders</div>
+        <div class="step-box">4. Get paid directly</div>
+    </section>
+
+    <div class="footer">
+        © 2026 INDICART. Made with ❤️ in India. All Rights Reserved.
+    </div>
 
 </body>
+
 </html>

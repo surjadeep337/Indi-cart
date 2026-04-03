@@ -1724,8 +1724,8 @@
       <div class="footer-col">
         <h4>Help</h4>
         <ul>
-          <li><a href="#">Track Order</a></li>
-          <li><a href="#">Returns</a></li>
+          <li><a href="track.html">Track Order</a></li>
+          <li><a href="retruns.html">Returns</a></li>
           <li><a href="customer_support.html">Customer Support</a></li>
           <li><a href="faq.html">FAQ</a></li>
         </ul>
@@ -1741,7 +1741,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2025 INDICART. Made with ❤️ in India. All Rights Reserved.</p>
+      <p>© 2026 INDICART. Made with ❤️ in India. All Rights Reserved.</p>
     </div>
   </footer>
 
@@ -1755,7 +1755,9 @@
     </div>
     <div class="cart-footer" id="cartFooter" style="display:none">
       <div class="cart-total">Total: <strong id="cartTotal">₹0</strong></div>
-      <button class="btn-checkout">Proceed to Checkout →</button>
+      <button class="btn-checkout" onclick="window.location.href='cart.html'">
+        Open Full Cart →
+      </button>
     </div>
   </div>
 
@@ -2075,6 +2077,7 @@
 
     renderProducts();
   </script>
+  <script src="App.js"></script>
 </body>
 
 </html>
