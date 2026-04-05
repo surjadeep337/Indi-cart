@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Account - INDICART</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
+    body{min-height:100vh;display:flex;flex-direction:column;background:#f1f3f6}
+    .navbar{position:relative;padding:18px 60px;background:white}
+    .navbar::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:3px;background:linear-gradient(90deg,#ff6a2f,transparent,#ff6a2f);background-size:200%;animation:move 8s linear infinite}
+    .logo{font-size:30px;font-weight:bold}.logo span{color:#ff6a2f}
+    .main{flex:1;display:flex;justify-content:center;align-items:center;padding:40px}
+    .glow-box{padding:3px;border-radius:16px;background:linear-gradient(90deg,#ff6a2f,transparent,#ff6a2f);background-size:200%;animation:move 8s linear infinite}
+    .box{background:white;padding:45px;border-radius:14px;width:420px}
+    .title{text-align:center;font-size:24px;font-weight:bold;margin-bottom:25px}
+    .tabs{display:flex;margin-bottom:20px;border-radius:10px;overflow:hidden}
+    .tabs button{flex:1;padding:12px;border:none;background:#eee;cursor:pointer;font-weight:600;transition:0.3s}
+    .tabs .active{background:#ff6a2f;color:white}
+    input{width:100%;padding:13px;margin-bottom:12px;border-radius:8px;border:1px solid #ddd;outline:none}
+    input:focus{border-color:#ff6a2f;box-shadow:0 0 6px rgba(255,106,47,.3)}
+    .err{color:red;font-size:13px;margin-bottom:10px;min-height:16px}
+    .ok{color:green;font-size:13px;margin-bottom:10px;min-height:16px}
+    .btn{width:100%;padding:13px;border-radius:30px;border:none;background:linear-gradient(135deg,#ff6a2f,#ff8c42);color:white;font-weight:bold;cursor:pointer;transition:0.3s}
+    .btn:hover{transform:scale(1.05)}.btn:disabled{opacity:0.6;cursor:not-allowed;transform:none}
+    .btn-out{width:100%;padding:12px;border-radius:30px;border:2px solid #ff6a2f;background:white;color:#ff6a2f;font-weight:bold;cursor:pointer;margin-top:10px;transition:0.3s}
+    .btn-out:hover{background:#ff6a2f;color:white}
+    .avatar{width:70px;height:70px;border-radius:50%;background:#ff6a2f;color:white;font-size:28px;font-weight:bold;display:flex;align-items:center;justify-content:center;margin:0 auto 15px}
+    .profile{text-align:center}
+    .profile h2{margin-bottom:5px}.profile p{color:#777;font-size:14px;margin-bottom:20px}
+    .footer{position:relative;padding:18px;text-align:center;background:white}
+    .footer::before{content:"";position:absolute;left:0;top:0;width:100%;height:3px;background:linear-gradient(90deg,#ff6a2f,transparent,#ff6a2f);background-size:200%;animation:move 8s linear infinite}
+    @keyframes move{0%{background-position:0%}100%{background-position:200%}}
+    .hidden{display:none}
+  </style>
+</head>
+<body>
+
+<div class="navbar"><div class="logo">INDI<span>CART</span></div></div>
+
+<div class="main">
+  <div class="glow-box">
+    <div class="box">
+
+      <!-- Profile (shown when logged in) -->
+      <div id="profileView" class="hidden profile">
+        <div class="avatar" id="avatarLetter">?</div>
+        <h2 id="profileName">-</h2>
+        <p id="profileEmail">-</p>
+        <a href="index.html"><button class="btn">🛒 Go Shopping</button></a>
+        <button class="btn-out" onclick="doLogout()">Logout</button>
+      </div>
+
+      <!-- Auth (shown when NOT logged in) -->
+      <div id="authView">
+        <div class="title">Your Account</div>
+        <div class="tabs">
+          <button id="loginTab" class="active" onclick="showLogin()">Login</button>
+          <button id="registerTab" onclick="showRegister()">Register</button>
+        </div>
+
+        <!-- LOGIN -->
+        <div id="loginForm">
+          <input id="lEmail" type="email" placeholder="Email">
+          <input id="lPass" type="password" placeholder="Password">
+          <div id="lErr" class="err"></div>
+          <div id="lOk"  class="ok"></div>
+          <button id="lBtn" class="btn" onclick="doLogin()">Login</button>
+        </div>
+
+        <!-- REGISTER -->
+        <div id="registerForm" class="hidden">
+          <input id="rName"    type="text"     placeholder="Full Name">
+          <input id="rEmail"   type="email"    placeholder="Email">
+          <input id="rPass"    type="password" placeholder="Password (min 6 chars)">
+          <input id="rConfirm" type="password" placeholder="Confirm Password">
+          <div id="rErr" class="err"></div>
+          <div id="rOk"  class="ok"></div>
+          <button id="rBtn" class="btn" onclick="doRegister()">Create Account</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="footer">© 2026 INDI<span style="color:#ff6a2f">CART</span>. Made in India 🇮🇳</div>
+
+<script src="api.js"></script>
+<script>
+  // On load — check if already logged in
+  window.addEventListener('DOMContentLoaded', async () => {
+    const res = await Auth.me();
+    if (res.ok && res.data.loggedIn) showProfile(res.data.user);
+  });
+
+  function showProfile(user) {
+    document.getElementById('authView').classList.add('hidden');
+    document.getElementById('profileView').classList.remove('hidden');
+    document.getElementById('avatarLetter').textContent = user.name.charAt(0).toUpperCase();
+    document.getElementById('profileName').textContent  = user.name;
+    document.getElementById('profileEmail').textContent = user.email;
+  }
+
+  function showLogin() {
+    document.getElementById('loginForm').classList.remove('hidden');
+    document.getElementById('registerForm').classList.add('hidden');
+    document.getElementById('loginTab').classList.add('active');
+    document.getElementById('registerTab').classList.remove('active');
+  }
+
+  function showRegister() {
+    document.getElementById('registerForm').classList.remove('hidden');
+    document.getElementById('loginForm').classList.add('hidden');
+    document.getElementById('registerTab').classList.add('active');
+    document.getElementById('loginTab').classList.remove('active');
+  }
+
+  async function doLogin() {
+    const email = document.getElementById('lEmail').value.trim();
+    const pass  = document.getElementById('lPass').value;
+    const err   = document.getElementById('lErr');
+    const ok    = document.getElementById('lOk');
+    const btn   = document.getElementById('lBtn');
+    err.textContent = ''; ok.textContent = '';
+    if (!email || !pass) { err.textContent = 'Fill all fields'; return; }
+    btn.disabled = true; btn.textContent = 'Logging in...';
+    const res = await Auth.login(email, pass);
+    btn.disabled = false; btn.textContent = 'Login';
+    if (res.ok) {
+      ok.textContent = '✅ Login successful! Redirecting...';
+      setTimeout(() => window.location.href = 'index.html', 800);
+    } else {
+      err.textContent = res.data.error || 'Login failed';
+    }
+  }
+
+  async function doRegister() {
+    const name    = document.getElementById('rName').value.trim();
+    const email   = document.getElementById('rEmail').value.trim();
+    const pass    = document.getElementById('rPass').value;
+    const confirm = document.getElementById('rConfirm').value;
+    const err     = document.getElementById('rErr');
+    const ok      = document.getElementById('rOk');
+    const btn     = document.getElementById('rBtn');
+    err.textContent = ''; ok.textContent = '';
+    if (!name || !email || !pass || !confirm) { err.textContent = 'Fill all fields'; return; }
+    if (pass !== confirm) { err.textContent = 'Passwords do not match'; return; }
+    if (pass.length < 6)  { err.textContent = 'Password must be 6+ characters'; return; }
+    btn.disabled = true; btn.textContent = 'Creating...';
+    const res = await Auth.register(name, email, pass);
+    btn.disabled = false; btn.textContent = 'Create Account';
+    if (res.ok) {
+      ok.textContent = '✅ Account created! Redirecting...';
+      setTimeout(() => window.location.href = 'index.html', 800);
+    } else {
+      err.textContent = res.data.error || 'Registration failed';
+    }
+  }
+
+  async function doLogout() {
+    await Auth.logout();
+    window.location.reload();
+  }
+
+  // Enter key support
+  document.addEventListener('keydown', e => {
+    if (e.key !== 'Enter') return;
+    if (!document.getElementById('loginForm').classList.contains('hidden')) doLogin();
+    else if (!document.getElementById('registerForm').classList.contains('hidden')) doRegister();
+  });
+</script>
+</body>
+</html>
